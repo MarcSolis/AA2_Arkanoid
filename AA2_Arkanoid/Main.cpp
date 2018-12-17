@@ -2,7 +2,7 @@
 #include "Controller.h"
 
 
-int main() {
+int main(int, char*[]) {
 
 	//Initialize Game
 	Controller controller;

@@ -5,7 +5,7 @@ Scene::Scene() {}
 void Scene::Run(const InputManager &input)
 {
 	frameStart = SDL_GetTicks();
-	playtime = counter - (clock() - initClock) / CLOCKS_PER_SEC;
+	playtime = counter + (clock() - initClock) / CLOCKS_PER_SEC;
 
 	Update(input);
 	FixedUpdate();

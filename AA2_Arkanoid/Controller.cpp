@@ -1,9 +1,10 @@
 #include "Controller.h"
-
+#include "SplashScene.h"
+#include "MenuScene.h"
 
 Controller::Controller()
 {
-	scene = new SplashScene();
+	scene = new SplashScene;
 	isRunning = true;
 }
 
@@ -20,21 +21,22 @@ void Controller::GameLoop()
 		switch (scene->Transition()) {
 		case SceneType::SPLASHSCREEN:
 			delete scene;
-			scene = new SplashScene();
+			scene = new SplashScene;
 			break;
 		case SceneType::MENU:
 			delete scene;
-			scene = new MenuScene();
+			scene = new MenuScene;
 			break;
-		case SceneType::GAME:
+		/*case SceneType::GAME:
 			delete scene;
 			scene = new GameScene();
 			break;
 		case SceneType::RANKING:
 			delete scene;
 			scene = new RankingScene();
-			break;
+			break;*/
 		default:
+			break;
 		}
 	}
 

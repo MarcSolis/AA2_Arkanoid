@@ -1,6 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <time.h>
+#include <iostream>
 
 // Game general information.
 #define SCREEN_WIDTH 1280

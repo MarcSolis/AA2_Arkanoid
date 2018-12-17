@@ -9,7 +9,7 @@ protected:
 //Atributes
 	Uint32 frameStart, frameTime;
 	int frame = 0;
-	int counter = MATCH_TIME, initClock, playtime = 0;
+	int counter = 0, initClock = 0, playtime = 0;
 	SceneType nextScene{ CURRENT };
 
 public:
