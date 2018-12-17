@@ -28,55 +28,58 @@ Renderer::Renderer()
 };
 
 //Functions
-void Renderer::Clear() { SDL_RenderClear(m_renderer); };
 
-void Renderer::Render() { SDL_RenderPresent(m_renderer); };
+	//Clean renderer
+	void Renderer::Clear() { SDL_RenderClear(m_renderer); };
 
-void Renderer::LoadFont(Font font) {
-	TTF_Font *ttfFont{ TTF_OpenFont(font.path.c_str(), font.size) };
-	if (ttfFont == nullptr) throw"No espot inicialitzar TTF_Font";
-	m_fontData[font.id] = ttfFont;
-};
+	//Print renderer
+	void Renderer::Render() { SDL_RenderPresent(m_renderer); };
 
-void Renderer::LoadTexture(const std::string &id, const std::string &path) {
-	SDL_Texture *texture{ IMG_LoadTexture(m_renderer, path.c_str()) };
-	if (texture == nullptr) throw "No s'han pogut crear les textures";
-	m_textureData[id] = texture;
-};
+	void Renderer::LoadFont(Font font) {
+		TTF_Font *ttfFont{ TTF_OpenFont(font.path.c_str(), font.size) };
+		if (ttfFont == nullptr) throw"No espot inicialitzar TTF_Font";
+		m_fontData[font.id] = ttfFont;
+	};
 
-void Renderer::LoadTextureText(const std::string &fontId, Text text) {
-	SDL_Surface	*tmpSurf = TTF_RenderText_Blended(m_fontData[fontId], text.text.c_str(), SDL_Color{ text.color.r, text.color.g, text.color.b,text.color.a });
-	if (tmpSurf == nullptr) throw "Unable to create the SDL text surface";
-	SDL_Texture *texture{ SDL_CreateTextureFromSurface(m_renderer, tmpSurf) };
-	m_textureData[text.id] = texture;
+	void Renderer::LoadTexture(const std::string &id, const std::string &path) {
+		SDL_Texture *texture{ IMG_LoadTexture(m_renderer, path.c_str()) };
+		if (texture == nullptr) throw "No s'han pogut crear les textures";
+		m_textureData[id] = texture;
+	};
 
-};
+	void Renderer::LoadTextureText(const std::string &fontId, Text text) {
+		SDL_Surface	*tmpSurf = TTF_RenderText_Blended(m_fontData[fontId], text.text.c_str(), SDL_Color{ text.color.r, text.color.g, text.color.b,text.color.a });
+		if (tmpSurf == nullptr) throw "Unable to create the SDL text surface";
+		SDL_Texture *texture{ SDL_CreateTextureFromSurface(m_renderer, tmpSurf) };
+		m_textureData[text.id] = texture;
 
-Vec2 Renderer::GetTextureSize(const std::string &id) {
-	int w; int h;
-	SDL_QueryTexture(m_textureData[id], NULL, NULL, &w, &h);
-	return { w, h };
-};
+	};
 
-void Renderer::PushImage(const std::string &id, const SDL_Rect &rect) {
-	SDL_RenderCopy(m_renderer, m_textureData[id], nullptr, &rect);
-};
+	Vec2 Renderer::GetTextureSize(const std::string &id) {
+		int w; int h;
+		SDL_QueryTexture(m_textureData[id], NULL, NULL, &w, &h);
+		return { w, h };
+	};
 
-void Renderer::PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos) {
-	SDL_RenderCopy(m_renderer, m_textureData[id], &rectSprite, &rectPos);
-}
+	void Renderer::PushImage(const std::string &id, const SDL_Rect &rect) {
+		SDL_RenderCopy(m_renderer, m_textureData[id], nullptr, &rect);
+	};
 
-void Renderer::PushRotatedSprite(const std::string & id, const SDL_Rect & rectSprite, const SDL_Rect & rectPos, float angle) {
-	SDL_Point center = { rectPos.w / 2, rectPos.h / 2 };
-	SDL_RenderCopyEx(m_renderer, m_textureData[id], &rectSprite, &rectPos, angle, &center, SDL_FLIP_NONE);
-}
+	void Renderer::PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos) {
+		SDL_RenderCopy(m_renderer, m_textureData[id], &rectSprite, &rectPos);
+	}
 
-void Renderer::SetRenderDrawColor(int r, int g, int b)
-{
-	SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
-}
+	void Renderer::PushRotatedSprite(const std::string & id, const SDL_Rect & rectSprite, const SDL_Rect & rectPos, float angle) {
+		SDL_Point center = { rectPos.w / 2, rectPos.h / 2 };
+		SDL_RenderCopyEx(m_renderer, m_textureData[id], &rectSprite, &rectPos, angle, &center, SDL_FLIP_NONE);
+	}
 
-Renderer* Renderer::renderer = nullptr;
+	void Renderer::SetRenderDrawColor(int r, int g, int b)
+	{
+		SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
+	}
+
+	Renderer* Renderer::renderer = nullptr;
 
 //Destructor
 Renderer::~Renderer()
