@@ -3,6 +3,8 @@
 
 class MenuScene : public Scene
 {
+private: 
+	int timer;
 public:
 	//Constructor
 	MenuScene();

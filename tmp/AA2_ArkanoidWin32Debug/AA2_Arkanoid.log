@@ -1,13 +1,5 @@
-﻿  Controller.cpp
-  GameScene.cpp
-  InputManager.cpp
-d:\documentos\git repos\aa2_arkanoid\aa2_arkanoid\inputmanager.cpp(19): warning C4244: 'argument': conversion from 'Sint32' to 'const float', possible loss of data
-  Main.cpp
-  MenuScene.cpp
-  RankingScene.cpp
-  Scene.cpp
-  SplashScene.cpp
-  Vec2.cpp
+﻿  GameScene.cpp
+  Controller.cpp
   Generating Code...
-  AA2_Arkanoid.vcxproj -> D:\Documentos\Git Repos\AA2_Arkanoid\\bin\Win32Debug\AA2_Arkanoid.exe
+  AA2_Arkanoid.vcxproj -> E:\Universitat\2n DEV\Treballs\Programació en Llenguatges Interpretats\Arkanoid\AA2_Arkanoid\\bin\Win32Debug\AA2_Arkanoid.exe
   0 archivo(s) copiado(s)

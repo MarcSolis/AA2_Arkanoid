@@ -1,6 +1,7 @@
 #include "Controller.h"
 #include "SplashScene.h"
 #include "MenuScene.h"
+#include "GameScene.h"
 
 Controller::Controller()
 {
@@ -27,11 +28,11 @@ void Controller::GameLoop()
 			delete scene;
 			scene = new MenuScene;
 			break;
-		/*case SceneType::GAME:
+		case SceneType::GAME:
 			delete scene;
-			scene = new GameScene();
+			scene = new GameScene;
 			break;
-		case SceneType::RANKING:
+		/*case SceneType::RANKING:
 			delete scene;
 			scene = new RankingScene();
 			break;*/

@@ -1,13 +1,15 @@
 #include "MenuScene.h"
+#include "Renderer.h"
 
-
-MenuScene::MenuScene() : //bgTexture(IMG_LoadTexture(renderer, "../../res/img/NAME.jpg"))
+MenuScene::MenuScene() 
 {
+	timer = 6;
+	Renderer::Instance()->LoadTexture("MenuBackground", "../res/Menu.jpg");
 }
 
 void MenuScene::Update(const InputManager &)
 {
-	std::cout << "MENU" << std::endl;
+	if (playtime >= timer) nextScene = GAME;
 }
 
 void MenuScene::FixedUpdate()
@@ -16,8 +18,10 @@ void MenuScene::FixedUpdate()
 
 void MenuScene::Render()
 {
+	Renderer::Instance()->PushImage("MenuBackground", bgRect);
+	Renderer::Instance()->Render();
 }
 
 MenuScene::~MenuScene()
-{
+{	
 }
