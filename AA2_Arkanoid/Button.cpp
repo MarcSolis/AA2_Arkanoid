@@ -1,16 +1,22 @@
 #include "Button.h"
 
 //Constructor
-	Button::Button(Vec2 &pos, const std::string &text)
-	{
-		normalID = "buttonNormal_" + text;
-		hoverID = "buttonHover_" + text;
-		Renderer::Instance()->LoadTextureText("Sayain", { normalID, text, { 255, 255, 255, 255 } });
-		Renderer::Instance()->LoadTextureText("Sayain", { hoverID, text, { 255, 255, 255, 255 } });
+Button::Button(const Vec2 &pos, const std::string &text)
+{
+	normalID = "buttonNormal_" + text;
+	hoverID = "buttonHover_" + text;
+	Renderer::Instance()->LoadTextureText("Sayain", { normalID, text, { 255, 255, 255, 255 } });
+	Renderer::Instance()->LoadTextureText("Sayain", { hoverID, text, { 255, 255, 255, 255 } });
 
-		Vec2 size = Renderer::Instance()->GetTextureSize(normalID);
-		rect = SDL_Rect{ (int)pos.x, (int)pos.y, (int)size.x, (int)size.y };
-	}
+	std::cout << "Created Button" << std::endl;
+
+	Vec2 size = Renderer::Instance()->GetTextureSize(normalID);
+	rect = SDL_Rect{ pos.x, pos.y, size.x, size.y };
+}
+
+Button::Button()
+{
+}
 
 //Functions
 	void Button::Render() {

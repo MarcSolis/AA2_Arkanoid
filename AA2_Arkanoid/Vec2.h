@@ -4,7 +4,7 @@ class Vec2
 public:
 
 //Atributes
-	float x, y;
+	int x, y;
 
 //Constructors
 	Vec2();

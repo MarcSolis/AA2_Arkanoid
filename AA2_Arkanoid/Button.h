@@ -8,19 +8,21 @@
 class Button
 {
 private:
+	//Atributtes
 	SDL_Rect rect;
 	std::string normalID, hoverID;
 
 	bool isHover;
 
 public:
-
-	Button(Vec2&, const std::string&);
-
+	//Constructor
+	Button(const Vec2&, const std::string&);
+	Button();
+	//Functions
 	void Render();
 	void IsHover(const Vec2&);
 	void OnClick(const std::function<void()>& func);
-
+	//Destructor
 	~Button();
 };
 
