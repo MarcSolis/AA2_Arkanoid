@@ -1,7 +1,7 @@
 #include "MenuScene.h"
 
 
-MenuScene::MenuScene()
+MenuScene::MenuScene() : //bgTexture(IMG_LoadTexture(renderer, "../../res/img/NAME.jpg"))
 {
 }
 

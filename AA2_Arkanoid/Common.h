@@ -4,8 +4,8 @@
 #include <iostream>
 
 // Game general information.
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 600
 #define MATCH_TIME 60
 
 const int FPS = 60;
