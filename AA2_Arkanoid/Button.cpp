@@ -9,7 +9,7 @@
 		Renderer::Instance()->LoadTextureText("Sayain", { hoverID, text, { 255, 255, 255, 255 } });
 
 		Vec2 size = Renderer::Instance()->GetTextureSize(normalID);
-		rect = SDL_Rect{ pos.x, pos.y, size.x, size.y };
+		rect = SDL_Rect{ (int)pos.x, (int)pos.y, (int)size.x, (int)size.y };
 	}
 
 //Functions
