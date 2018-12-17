@@ -1,0 +1,26 @@
+﻿  Controller.cpp
+  InputManager.cpp
+d:\documentos\git repos\aa2_arkanoid\aa2_arkanoid\inputmanager.cpp(19): warning C4244: 'argument': conversion from 'Sint32' to 'const float', possible loss of data
+  Main.cpp
+  Scene.cpp
+  Vec2.cpp
+  Generating Code...
+  AA2_Arkanoid.vcxproj -> D:\Documentos\Git Repos\AA2_Arkanoid\\bin\Win32Debug\AA2_Arkanoid.exe
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libFLAC-8.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libfreetype-6.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libjpeg-9.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libmodplug-1.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libogg-0.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libpng16-16.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libtiff-5.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libvorbis-0.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libvorbisfile-3.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\libwebp-4.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\SDL2.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\SDL2_image.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\SDL2_mixer.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\SDL2_net.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\SDL2_ttf.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\smpeg2.dll
+  D:\Documentos\Git Repos\AA2_Arkanoid\\dep\dll\x86\zlib1.dll
+  17 archivo(s) copiado(s)
