@@ -52,7 +52,6 @@ Renderer::Renderer()
 		if (tmpSurf == nullptr) throw "Unable to create the SDL text surface";
 		SDL_Texture *texture{ SDL_CreateTextureFromSurface(m_renderer, tmpSurf) };
 		m_textureData[text.id] = texture;
-
 	};
 
 	Vec2 Renderer::GetTextureSize(const std::string &id) {

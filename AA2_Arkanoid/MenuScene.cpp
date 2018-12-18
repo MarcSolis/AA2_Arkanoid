@@ -1,16 +1,31 @@
 #include "MenuScene.h"
 
-MenuScene::MenuScene() : b(playButtPos, "Play")
+MenuScene::MenuScene() :
+	playButton(playButtPos, "Play", "sunspire"),
+	rankingButton(rankingButtPos, "Ranking", "sunspire"),
+	quitButton(quitButtPos, "Quit", "sunspire"),
+	soundButton(soundButtPos, "Sound ON", "Sound OFF", "S_sunspire")
 {
-	timer = 6000;
 	Renderer::Instance()->LoadTexture("MenuBackground", "../res/Menu.jpg");
 }
 
 void MenuScene::Update(const InputManager &input)
 {
-	//if (playtime >= timer) nextScene = GAME;
-	//b.IsHover(input.mousePos);
-	//b.OnClick(GoToPlay());
+	playButton.IsHover(input.mousePos);
+	rankingButton.IsHover(input.mousePos);
+	quitButton.IsHover(input.mousePos);
+	soundButton.IsHover(input.mousePos);
+
+	if (input.mouseClicked) {
+		playButton.OnClick(false, [&]() {nextScene = GAME; });
+		rankingButton.OnClick(false, [&]() {nextScene = RANKING; });
+		quitButton.OnClick(false, [&]() {nextScene = EXIT; });
+
+		if (playtime >= timeToClickAgain)
+			soundButton.OnClick(true, [&]() {timeToClickAgain = playtime + 10000; });
+	}
+	else
+		timeToClickAgain = playtime;
 }
 
 void MenuScene::FixedUpdate()
@@ -20,13 +35,12 @@ void MenuScene::FixedUpdate()
 void MenuScene::Render()
 {
 	Renderer::Instance()->PushImage("MenuBackground", bgRect);
-	Renderer::Instance()->Render();
-	b.Render();
-}
+	playButton.Render();
+	rankingButton.Render();
+	quitButton.Render();
+	soundButton.Render();
 
-void MenuScene::GoToPlay()
-{
-	nextScene = GAME;
+	Renderer::Instance()->Render();
 }
 
 MenuScene::~MenuScene()

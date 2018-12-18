@@ -5,8 +5,9 @@
 
 Controller::Controller()
 {
-	Renderer::Instance()->LoadFont({ "sunspire", "../res/sunspire", 32 });
-	scene = new SplashScene;
+	Renderer::Instance()->LoadFont({ "sunspire", "../res/sunspire.ttf", 50 });
+	Renderer::Instance()->LoadFont({ "S_sunspire", "../res/sunspire.ttf", 20 });
+	scene = new MenuScene; //CHANGE TO SPLASHSCREEN ON LAUNCH
 	isRunning = true;
 }
 
@@ -37,6 +38,9 @@ void Controller::GameLoop()
 			delete scene;
 			scene = new RankingScene();
 			break;*/
+		case SceneType::EXIT:
+			isRunning = false;
+			break;
 		default:
 			break;
 		}
@@ -50,7 +54,7 @@ void Controller::GameLoop()
 void Controller::EndGame()
 {
 	delete scene;
-	//renderer->Instance()->Close();
+	//Renderer::Instance()-
 }
 
 
@@ -58,5 +62,4 @@ void Controller::EndGame()
 
 Controller::~Controller()
 {
-	delete scene;
 }

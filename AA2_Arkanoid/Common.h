@@ -11,4 +11,4 @@
 const int FPS = 60;
 const float DELAY_TIME = 1000.0f / FPS;
 
-enum SceneType { SPLASHSCREEN, MENU, GAME, RANKING, CURRENT };
+enum SceneType { SPLASHSCREEN, MENU, GAME, RANKING, CURRENT, EXIT };
