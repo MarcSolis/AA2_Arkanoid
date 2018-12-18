@@ -5,6 +5,7 @@
 
 Controller::Controller()
 {
+	Renderer::Instance()->LoadFont({ "sunspire", "../res/sunspire", 32 });
 	scene = new SplashScene;
 	isRunning = true;
 }

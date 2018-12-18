@@ -1,6 +1,16 @@
-﻿  MenuScene.cpp
+﻿  Button.cpp
   Controller.cpp
-  Button.cpp
+  Font.cpp
+  GameScene.cpp
+  InputManager.cpp
+  Main.cpp
+  MenuScene.cpp
+  RankingScene.cpp
+  Renderer.cpp
+  Scene.cpp
+  SplashScene.cpp
+  Text.cpp
+  Vec2.cpp
   Generating Code...
-  AA2_Arkanoid.vcxproj -> E:\Universitat\2n DEV\Treballs\Programació en Llenguatges Interpretats\Arkanoid\AA2_Arkanoid\\bin\Win32Debug\AA2_Arkanoid.exe
+  AA2_Arkanoid.vcxproj -> D:\Documentos\Git Repos\AA2_Arkanoid\\bin\Win32Debug\AA2_Arkanoid.exe
   0 archivo(s) copiado(s)
