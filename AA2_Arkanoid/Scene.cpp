@@ -21,6 +21,11 @@ void Scene::Run(const InputManager &input)
 
 }
 
+void Scene::SetNextSceneToCurrent()
+{
+	nextScene = CURRENT;
+}
+
 SceneType Scene::Transition() {	return nextScene; }
 
 Scene::~Scene() {}

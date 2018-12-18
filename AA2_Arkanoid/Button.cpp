@@ -60,5 +60,15 @@ void Button::OnClick(const bool &change, const std::function<void()>& func)
 	}
 }
 
+void Button::Destroy(Button &button)
+{
+	Renderer::Instance()->DeleteTexture(button.normalID);
+	Renderer::Instance()->DeleteTexture(button.hoverID);
+	Renderer::Instance()->DeleteTexture(button.normalID2);
+	Renderer::Instance()->DeleteTexture(button.hoverID2);
+}
+
 //Destructor
-Button::~Button() {}
+Button::~Button() {
+	Destroy(*this);
+}

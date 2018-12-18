@@ -24,6 +24,7 @@ public:
 	void Render();
 	void IsHover(const Vec2&);
 	void OnClick(const bool&, const std::function<void()>&);
+	static void Destroy(Button&);
 	//Destructor
 	~Button();
 };

@@ -58,11 +58,13 @@ Renderer::Renderer()
 		int w; int h;
 		SDL_QueryTexture(m_textureData[id], NULL, NULL, &w, &h);
 		return { w, h };
-	};
+	}
 
 	void Renderer::PushImage(const std::string &id, const SDL_Rect &rect) {
 		SDL_RenderCopy(m_renderer, m_textureData[id], nullptr, &rect);
 	};
+
+
 
 	void Renderer::PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos) {
 		SDL_RenderCopy(m_renderer, m_textureData[id], &rectSprite, &rectPos);
@@ -76,6 +78,13 @@ Renderer::Renderer()
 	void Renderer::SetRenderDrawColor(int r, int g, int b)
 	{
 		SDL_SetRenderDrawColor(m_renderer, r, g, b, 255);
+	}
+
+	void Renderer::DeleteTexture(const std::string &name)
+	{
+		auto it = m_textureData.find(name);
+		SDL_DestroyTexture(it->second);
+		it->second = nullptr;
 	}
 
 	Renderer* Renderer::renderer = nullptr;

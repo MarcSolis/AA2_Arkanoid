@@ -1,0 +1,23 @@
+#pragma once
+#include "Common.h"
+#include "Vec2.h"
+#include "Renderer.h"
+
+class UIText
+{
+private:
+	//Atributes
+	SDL_Rect rect;
+	std::string textID;
+	
+public:
+	//Constructor
+	UIText();
+	UIText(const Vec2&, const std::string&, const std::string&, const SDL_Color&);
+	//Functions
+	void Render();
+	static void Destroy(UIText&);
+	//Destructor
+	~UIText();
+};
+

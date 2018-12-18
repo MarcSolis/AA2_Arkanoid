@@ -4,7 +4,7 @@ MenuScene::MenuScene() :
 	playButton(playButtPos, "Play", "sunspire"),
 	rankingButton(rankingButtPos, "Ranking", "sunspire"),
 	quitButton(quitButtPos, "Quit", "sunspire"),
-	soundButton(soundButtPos, "Sound ON", "Sound OFF", "S_sunspire")
+	soundButton(soundButtPos, "Sound ON", "Sound OFF", "XS_sunspire")
 {
 	Renderer::Instance()->LoadTexture("MenuBackground", "../res/Menu.jpg");
 }

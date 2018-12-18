@@ -21,6 +21,7 @@ public:
 	virtual void Update(const InputManager &) = 0;
 	virtual void FixedUpdate() = 0;
 	virtual void Render() = 0;
+	void SetNextSceneToCurrent();
 	SceneType Transition();
 
 //Destructor 

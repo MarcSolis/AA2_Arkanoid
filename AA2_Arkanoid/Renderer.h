@@ -40,6 +40,7 @@ public:
 	void PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos);
 	void PushRotatedSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos, float angle);
 	void SetRenderDrawColor(int r, int g, int b);
+	void DeleteTexture(const std::string &);
 
 //Destructor
 	~Renderer();
