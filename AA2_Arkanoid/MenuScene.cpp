@@ -44,5 +44,9 @@ void MenuScene::Render()
 }
 
 MenuScene::~MenuScene()
-{	
+{
+	playButton.Destroy(playButton);
+	rankingButton.Destroy(rankingButton);
+	quitButton.Destroy(quitButton);
+	soundButton.Destroy(soundButton);
 }

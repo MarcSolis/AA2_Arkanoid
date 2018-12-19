@@ -13,7 +13,7 @@ private:
 public:
 	//Constructor
 	UIText();
-	UIText(const Vec2&, const std::string&, const std::string&, const SDL_Color&);
+	UIText(const Vec2&, const std::string&, const std::string&, const SDL_Color& = WHITE); ///Posició, Text, FontID, Color
 	//Functions
 	void Render();
 	static void Destroy(UIText&);

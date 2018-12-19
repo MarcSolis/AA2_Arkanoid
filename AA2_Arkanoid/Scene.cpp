@@ -4,11 +4,12 @@ Scene::Scene() {}
 
 void Scene::Run(const InputManager &input)
 {
+	FixedUpdate();
+
 	frameStart = SDL_GetTicks();
 	playtime = counter + (clock() - initClock) / CLOCKS_PER_SEC;
 
 	Update(input);
-	FixedUpdate();
 
 	frameTime = SDL_GetTicks() - frameStart;
 	if (frameTime < DELAY_TIME) {
@@ -18,12 +19,6 @@ void Scene::Run(const InputManager &input)
 	frame++;
 
 	Render();
-
-}
-
-void Scene::SetNextSceneToCurrent()
-{
-	nextScene = CURRENT;
 }
 
 SceneType Scene::Transition() {	return nextScene; }

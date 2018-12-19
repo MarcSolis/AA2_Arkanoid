@@ -12,7 +12,9 @@ private:
 	Vec2 rankingButtPos{ SCREEN_WIDTH / 2.85f, SCREEN_HEIGHT / 1.5f };
 	Vec2 quitButtPos{ SCREEN_WIDTH / 2.37f, SCREEN_HEIGHT / 1.2f };
 	Vec2 soundButtPos{ SCREEN_WIDTH * 0.84f, SCREEN_HEIGHT * 0.01f };
+
 	Button playButton, rankingButton, quitButton, soundButton;
+
 public:
 	//Constructor
 	MenuScene();

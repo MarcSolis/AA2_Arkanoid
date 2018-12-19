@@ -2,11 +2,15 @@
 
 
 GameScene::GameScene() :
+	players({Player(1, 1, "../res/platform.png"), Player(2,1,"../res/platform.png")}),
+	ball(10, 2, "../res/ball.png"),
 	startGame(startGamePos, "Start Game", "B_sunspire", { 255,255,255,255 }),
 	spaceBarToStart(spaceBarToStartPos, "Space Bar To Start", "S_sunspire", { 255,255,255,255 }),
-	pause(pausePos, "...Pause...", "B_sunspire", {255,255,255,255}),
+	pause(pausePos, "...Pause...", "B_sunspire", { 255,255,255,255 }),
 	pl1(pl1Pos, "PL1:", "sunspire", { 255,0,0,255 }),
+	//pl1Score(pl1ScorePos, player1.score.toString(), "sunspire", { 255,0,0,255 }),
 	pl2(pl2Pos, "PL2:", "sunspire", { 255,0,0,255 }),
+	//pl2Score(pl2ScorePos, player2.score.toString(), "sunspire", { 255,0,0,255 }),
 	soundButton(soundButtPos, "Sound ON", "Sound OFF", "S_sunspire")
 {
 	timeToPressAgain = 0;
@@ -19,6 +23,7 @@ void GameScene::Update(const InputManager &input)
 	Renderer::Instance()->PushImage("GameBackground", bgRect);
 	pl1.Render();
 	pl2.Render();
+	ball.Render();
 
 	switch (nextState)
 	{
@@ -31,6 +36,9 @@ void GameScene::Update(const InputManager &input)
 			spaceBarToStart.Render();
 			break;
 		case RUNNING:
+			players[0].Update(input);
+			ball.Update();
+
 			if (input.p || input.esc)
 			{
 				nextState = PAUSED;
@@ -64,6 +72,7 @@ void GameScene::Update(const InputManager &input)
 		default:
 			break;
 	}
+	players[0].Render();
 }
 
 void GameScene::FixedUpdate()

@@ -85,6 +85,8 @@ Renderer::Renderer()
 		auto it = m_textureData.find(name);
 		SDL_DestroyTexture(it->second);
 		it->second = nullptr;
+		m_textureData.erase(it);
+		std::cout << name << " erased" << std::endl;
 	}
 
 	Renderer* Renderer::renderer = nullptr;

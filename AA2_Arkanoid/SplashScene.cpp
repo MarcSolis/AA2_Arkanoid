@@ -19,7 +19,12 @@ void SplashScene::Update(const InputManager &)
 
 	Renderer::Instance()->PushImage("BallSplashScreen", ballRect);
 
-	if (playtime >= timer)	nextScene = MENU;
+	if (playtime >= timer) {
+		nextScene = MENU;
+		Renderer::Instance()->DeleteTexture("SplashBackground");
+		Renderer::Instance()->DeleteTexture("Platform");
+		Renderer::Instance()->DeleteTexture("BallSplashScreen");
+	}
 }
 
 void SplashScene::FixedUpdate() {}
@@ -29,4 +34,5 @@ void SplashScene::Render()
 	Renderer::Instance()->Render();
 }
 
-SplashScene::~SplashScene() {}
+SplashScene::~SplashScene() {
+}

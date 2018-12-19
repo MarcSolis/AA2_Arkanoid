@@ -12,7 +12,6 @@ private:
 public:
 	//Constructor
 	SplashScene();
-
 	//Functions
 	void Update(const InputManager &) override;
 	void FixedUpdate() override;

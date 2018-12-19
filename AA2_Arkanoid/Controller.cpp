@@ -10,7 +10,7 @@ Controller::Controller()
 	Renderer::Instance()->LoadFont({ "sunspire", "../res/sunspire.ttf", 50 });
 	Renderer::Instance()->LoadFont({ "S_sunspire", "../res/sunspire.ttf", 30 });
 	Renderer::Instance()->LoadFont({ "XS_sunspire", "../res/sunspire.ttf", 20 });
-	scene = new SplashScene;
+	scene = new MenuScene;
 	isRunning = true;
 }
 
@@ -18,7 +18,6 @@ void Controller::GameLoop()
 {
 	//Game Loop
 	while (isRunning) {
-
 		//Update
 		input.Update();
 		scene->Run(input);
@@ -26,19 +25,20 @@ void Controller::GameLoop()
 		//Logic
 		switch (scene->Transition()) {
 		case SceneType::SPLASHSCREEN:
-			delete scene;
+			scene->~Scene();
 			scene = new SplashScene;
 			break;
 		case SceneType::MENU:
-			delete scene;
+			scene->~Scene();
 			scene = new MenuScene;
 			break;
 		case SceneType::GAME:
-			delete scene;
+			scene->~Scene();
 			scene = new GameScene;
+			std::cout << "Created new GAME Scene" << std::endl;
 			break;
 		case SceneType::RANKING:
-			delete scene;
+			scene->~Scene();
 			scene = new RankingScene;
 			break;
 		case SceneType::EXIT:

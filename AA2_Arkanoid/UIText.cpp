@@ -10,7 +10,7 @@ UIText::UIText(const Vec2 &pos, const std::string &text, const std::string &font
 {
 	textID = text;
 
-	Renderer::Instance()->LoadTextureText(font, { textID, text, color});
+	Renderer::Instance()->LoadTextureText(font, { textID, text, color });
 
 	Vec2 size = Renderer::Instance()->GetTextureSize(textID);
 	rect = SDL_Rect{ pos.x, pos.y, size.x, size.y };
