@@ -2,6 +2,7 @@
 #include "SplashScene.h"
 #include "MenuScene.h"
 #include "GameScene.h"
+#include "RankingScene.h"
 
 Controller::Controller()
 {
@@ -9,7 +10,7 @@ Controller::Controller()
 	Renderer::Instance()->LoadFont({ "sunspire", "../res/sunspire.ttf", 50 });
 	Renderer::Instance()->LoadFont({ "S_sunspire", "../res/sunspire.ttf", 30 });
 	Renderer::Instance()->LoadFont({ "XS_sunspire", "../res/sunspire.ttf", 20 });
-	scene = new SplashScene; //CHANGE TO SPLASHSCREEN ON LAUNCH
+	scene = new RankingScene;
 	isRunning = true;
 }
 
@@ -36,10 +37,10 @@ void Controller::GameLoop()
 			delete scene;
 			scene = new GameScene;
 			break;
-		/*case SceneType::RANKING:
+		case SceneType::RANKING:
 			delete scene;
-			scene = new RankingScene();
-			break;*/
+			scene = new RankingScene;
+			break;
 		case SceneType::EXIT:
 			isRunning = false;
 			break;
