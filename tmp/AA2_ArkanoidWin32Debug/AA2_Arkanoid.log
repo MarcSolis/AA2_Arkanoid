@@ -1,4 +1,15 @@
-﻿  RankingScene.cpp
+﻿  SplashScene.cpp
+  Controller.cpp
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\menuscene.h(11): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\menuscene.h(12): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\menuscene.h(13): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\menuscene.h(14): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\gamescene.h(15): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\gamescene.h(16): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\gamescene.h(17): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\gamescene.h(18): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\gamescene.h(19): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\gamescene.h(22): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
 e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\rankingscene.h(9): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\rankingscene.h(11): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
 e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\rankingscene.h(14): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
@@ -12,5 +23,6 @@ e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid
 e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\rankingscene.h(22): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
 e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\rankingscene.h(23): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
 e:\universitat\2n dev\treballs\programació en llenguatges interpretats\arkanoid\aa2_arkanoid\aa2_arkanoid\rankingscene.h(28): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+  Generating Code...
   AA2_Arkanoid.vcxproj -> E:\Universitat\2n DEV\Treballs\Programació en Llenguatges Interpretats\Arkanoid\AA2_Arkanoid\\bin\Win32Debug\AA2_Arkanoid.exe
   0 archivo(s) copiado(s)

@@ -23,7 +23,6 @@ void GameScene::Update(const InputManager &input)
 	switch (nextState)
 	{
 		case START_GAME:
-			//SHOW START GAME SPACE BAR TO START
 			if (input.esc)
 				nextScene = MENU;
 			if (input.space)
@@ -57,6 +56,10 @@ void GameScene::Update(const InputManager &input)
 			soundButton.Render();
 			break;
 		case GAME_OVER:
+			std::cout << "Write the winner's name: ";
+			std::cin >> winnerName;
+			std::cout << "Congratulations, " << winnerName << ", you WON! If you got a high score you might be on Top 10. Check out the rankings." << std::endl;
+			nextScene = MENU;
 			break;
 		default:
 			break;

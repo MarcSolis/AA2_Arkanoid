@@ -5,6 +5,10 @@ class SplashScene : public Scene
 {
 private:
 	int timer;
+	int ballSpeed;
+
+	SDL_Rect platformRect{ 400, 500, 200, 60 };
+	SDL_Rect ballRect{ 465, 135, 60,60 };
 public:
 	//Constructor
 	SplashScene();

@@ -10,6 +10,7 @@ private:
 	enum GameStates {START_GAME, RUNNING, PAUSED, GAME_OVER, CURRENT};
 	GameStates nextState{ START_GAME };
 	int timeToPressAgain;
+	std::string winnerName;
 
 	Vec2 startGamePos{SCREEN_WIDTH * 0.2f, SCREEN_HEIGHT * 0.3f};
 	Vec2 spaceBarToStartPos{SCREEN_WIDTH / 3.67f, SCREEN_HEIGHT * 0.4f};

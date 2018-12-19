@@ -16,12 +16,12 @@ RankingScene::RankingScene() :
 	num10Text(num10Pos, "10 :", "S_sunspire", { 255,255,255,255 }),
 	menuButton(menuButtPos, "Menu", "sunspire")
 {
-
+	Renderer::Instance()->LoadTexture("RankingBackground", "../res/Ranking.jpg");
 }
 
 void RankingScene::Update(const InputManager &input)
 {
-	Renderer::Instance()->PushImage("MenuBackground", bgRect);
+	Renderer::Instance()->PushImage("RankingBackground", bgRect);
 	rankingText.Render();
 
 	num1Text.Render();
