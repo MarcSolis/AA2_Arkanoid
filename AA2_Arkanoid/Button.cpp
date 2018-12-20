@@ -1,7 +1,7 @@
 #include "Button.h"
 
 //Constructor
-Button::Button(const Vec2 &pos, const std::string &text, const std::string &font, const SDL_Color& normalColor, const SDL_Color& hoverColor)
+Button::Button(const Vec2 &pos, const std::string &text, const std::string &font, const Color& normalColor, const Color& hoverColor)
 {
 	normalID = "buttonNormal_" + text;
 	hoverID = "buttonHover_" + text;
@@ -12,10 +12,10 @@ Button::Button(const Vec2 &pos, const std::string &text, const std::string &font
 	activated = false;
 
 	Vec2 size = Renderer::Instance()->GetTextureSize(normalID);
-	rect = SDL_Rect{ pos.x, pos.y, size.x, size.y };
+	rect = Rect{ pos.x, pos.y, size.x, size.y };
 }
 
-Button::Button(const Vec2 &pos, const std::string &text1, const std::string &text2, const std::string &font, const SDL_Color& normalColor, const SDL_Color& hoverColor)
+Button::Button(const Vec2 &pos, const std::string &text1, const std::string &text2, const std::string &font, const Color& normalColor, const Color& hoverColor)
 {
 	normalID = "buttonNormal_" + text1;
 	hoverID = "buttonHover_" + text1;
@@ -32,7 +32,7 @@ Button::Button(const Vec2 &pos, const std::string &text1, const std::string &tex
 	activated = false;
 
 	Vec2 size = Renderer::Instance()->GetTextureSize(normalID);
-	rect = SDL_Rect{ pos.x, pos.y, size.x, size.y };
+	rect = Rect{ pos.x, pos.y, size.x, size.y };
 }
 
 Button::Button() {};
@@ -40,9 +40,9 @@ Button::Button() {};
 //Functions
 void Button::Render() {
 	if(!activated)
-		Renderer::Instance()->PushImage(isHover ? hoverID : normalID, rect);
+		Renderer::Instance()->PushImage(isHover ? hoverID : normalID, {rect.x, rect.y, rect.w, rect.h});
 	else
-		Renderer::Instance()->PushImage(isHover ? hoverID2 : normalID2, rect);
+		Renderer::Instance()->PushImage(isHover ? hoverID2 : normalID2, { rect.x, rect.y, rect.w, rect.h });
 }
 
 void Button::IsHover(const Vec2& pos) {

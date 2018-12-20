@@ -2,13 +2,15 @@
 
 
 GameScene::GameScene() :
-	players({Player(1, 10, "../res/platform.png"), Player(2,10,"../res/platform.png")}),
+	players({ Player(1, 10, "../res/platform.png"), Player(2,10,"../res/platform.png") }),
 	ball(10, 3, 6, "../res/ball.png"),
-	startGame(startGamePos, "Start Game", "B_sunspire", { 255,255,255,255 }),
-	spaceBarToStart(spaceBarToStartPos, "Space Bar To Start", "S_sunspire", { 255,255,255,255 }),
-	pause(pausePos, "...Pause...", "B_sunspire", { 255,255,255,255 }),
-	pl1(pl1Pos, "PL1:", "sunspire", { 255,0,0,255 }),
-	pl2(pl2Pos, "PL2:", "sunspire", { 255,0,0,255 }),
+	startGame(startGamePos, "Start Game", "B_sunspire", WHITE),
+	spaceBarToStart(spaceBarToStartPos, "Space Bar To Start", "S_sunspire", WHITE),
+	pause(pausePos, "...Pause...", "B_sunspire", WHITE),
+	pl1(pl1Pos, "PL1:", "sunspire", UIRED),
+	pl1Score(pl1ScorePos, std::to_string(players[0].GetScore()), "sunspire", UIRED),
+	pl2(pl2Pos, "PL2:", "sunspire", UIRED),
+	pl2Score(pl2ScorePos, std::to_string(players[1].GetScore()), "sunspire", UIRED),
 	soundButton(soundButtPos, "Sound ON", "Sound OFF", "S_sunspire")
 {
 	//UploadData();
@@ -51,6 +53,10 @@ GameScene::GameScene() :
 
 	timeToPressAgain = 0;
 	nextState = START_GAME;
+
+	maxPointsForLives = 100;
+	minPointsForLives = -50;
+
 	Renderer::Instance()->LoadTexture("GameBackground", "../res/Backgroung.jpg");
 
 	music = Mix_LoadMUS("../res/music.mp3");
@@ -64,6 +70,8 @@ void GameScene::Update(const InputManager &input)
 	pl1.Render();
 	pl2.Render();
 	ball.Render();
+	pl1Score.Render();
+	pl2Score.Render();
 
 	switch (nextState)
 	{
@@ -101,9 +109,17 @@ void GameScene::Update(const InputManager &input)
 			{
 				nextState = START_GAME;
 				if (ball.GetFirstPlayerHasBall())
+				{
 					UpdatePlayerLives(players[0]);
+					AddOrSusbsPoints(players[0], minPointsForLives);
+					AddOrSusbsPoints(players[1], maxPointsForLives);
+				}
 				else
+				{
 					UpdatePlayerLives(players[1]);
+					AddOrSusbsPoints(players[0], maxPointsForLives);
+					AddOrSusbsPoints(players[1], minPointsForLives);
+				}
 			}
 
 			break;
@@ -134,7 +150,8 @@ void GameScene::Update(const InputManager &input)
 		case GAME_OVER:
 			std::cout << "Write the winner's name: ";
 			std::cin >> winnerName;
-			std::cout << "Congratulations, " << winnerName << ", you WON! If you got a high score you might be on Top 10. Check out the rankings." << std::endl;
+			std::cout << std::endl << "Congratulations, " << winnerName << ", you WON obtaining " << (players[0].GetScore() > players[1].GetScore() ? players[0].GetScore() : players[1].GetScore())
+				<<" points!" << std::endl <<"If you got a nice score you might be on Top 10. Check out the rankings." << std::endl;
 			nextScene = MENU;
 			break;
 		default:
@@ -144,9 +161,14 @@ void GameScene::Update(const InputManager &input)
 	players[1].Render();
 
 	for (int i = 0; i < livesPosPl1.size(); i++)
-		Renderer::Instance()->PushImage("Life", livesPosPl1[i]);
+		Renderer::Instance()->PushImage("Life", { livesPosPl1[i].x, livesPosPl1[i].y, livesPosPl1[i].w, livesPosPl1[i].h });
 	for (int i = 0; i < livesPosPl2.size(); i++)
-		Renderer::Instance()->PushImage("Life", livesPosPl2[i]);
+		Renderer::Instance()->PushImage("Life", { livesPosPl2[i].x, livesPosPl2[i].y, livesPosPl2[i].w, livesPosPl2[i].h });
+
+	for (int i = 0; i < blocks.size(); i++)
+	{
+		blocks[i].Render();
+	}
 }
 
 void GameScene::FixedUpdate()
@@ -196,6 +218,18 @@ void GameScene::UpdatePlayerLives(Player &p)
 		else if(p.GetTag() == 2)
 			livesPosPl2.pop_back();
 	}
+}
+
+void GameScene::AddOrSusbsPoints(Player &pl, const int &po)
+{
+	int score = pl.GetScore();
+	score += po;
+	if (score < 0) score = 0;
+	pl.SetScore(score);
+	if (pl.GetTag() == 1)
+		pl1Score.ChangeTexture(pl1ScorePos, std::to_string(players[0].GetScore()), "sunspire", UIRED);
+	else if(pl.GetTag() == 2)
+		pl2Score.ChangeTexture(pl2ScorePos, std::to_string(players[1].GetScore()), "sunspire", UIRED);
 }
 
 GameScene::~GameScene()

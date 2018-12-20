@@ -16,7 +16,7 @@ private:
 
 public:
 	Rect position{ 0, 0, DEFAULT_BLOCK_HEIGHT, DEFAULT_BLOCK_WIDTH };
-	Texture texture{ "block", "../res/bricks.jpg" };
+	Texture texture{ "block", "../res/Backgroung.jpg" };
 	int life = 0, points, min = 0, max = 0;
 	Type type;
 	Color color;

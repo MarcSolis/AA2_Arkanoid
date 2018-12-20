@@ -11,6 +11,7 @@ private:
 	int tag;
 	int speed;
 	int lives;
+	int score;
 
 	std::string playerID;
 
@@ -33,8 +34,10 @@ public:
 	Vec2 ReturnInitBallPosition();
 	int GetTag();
 	int GetLives();
+	int GetScore();
 	void SetLives(const int&);
 	void SetSpeed(const int&);
+	void SetScore(const int&);
 	//Destructor
 	~Player();
 };

@@ -30,6 +30,7 @@ private:
 	std::vector<Player> players;
 
 	Ball ball;
+	int maxPointsForLives, minPointsForLives;
 
 	int NormalMin, NormalMax, HeavyMin, HeavyMax;
 	std::vector<Block> blocks;
@@ -39,13 +40,15 @@ private:
 	Vec2 pausePos{ int(SCREEN_WIDTH * 0.288f), int(SCREEN_HEIGHT * 0.2f) };
 	Vec2 pl1Pos{ int(SCREEN_WIDTH * 0.1f), int(SCREEN_HEIGHT * 0.835f) };
 	Vec2 pl2Pos{ int(SCREEN_WIDTH * 0.58f), int(SCREEN_HEIGHT * 0.835f) };
+	Vec2 pl1ScorePos{int(SCREEN_WIDTH * 0.25f), int(SCREEN_HEIGHT * 0.835f)};
+	Vec2 pl2ScorePos{int(SCREEN_WIDTH * 0.76f), int(SCREEN_HEIGHT * 0.835f)};
 
 	Texture texture_startGame, texture_spaceBarToStart, texture_pause, texture_pl1, texture_pl2, texture_pl1Score, texture_pl2Score;
 
 	Texture livesHUD{ "Life", "../res/platform.png" };
 	Vec2 livesSize{ 60,20 };
-	std::vector<SDL_Rect> livesPosPl1;
-	std::vector<SDL_Rect> livesPosPl2;
+	std::vector<Rect> livesPosPl1;
+	std::vector<Rect> livesPosPl2;
 
 	Vec2 cell{ DEFAULT_BLOCK_WIDTH, DEFAULT_BLOCK_HEIGHT };
 	Vec2 gridPosition;
@@ -65,6 +68,7 @@ public:
 	void UploadData();
 	void GenerateBlocks(const int&, const int&, const Type&);
 	void UpdatePlayerLives(Player&);
+	void AddOrSusbsPoints(Player&, const int&);
 	//Destructor
 	~GameScene();
 };

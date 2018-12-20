@@ -14,6 +14,7 @@ Player::Player(const int &playerTag, const int &playerSpeed , const std::string 
 
 	speed = playerSpeed;
 	lives = 3;
+	score = 0;
 
 	if (tag == 1)
 		position = Vec2{int(SCREEN_WIDTH * 0.1f), SCREEN_HEIGHT / 2};
@@ -51,9 +52,19 @@ void Player::DetectBallCollision(Ball &b)
 	if (b.GetRect().y < rect.y + rect.w - rect.h && b.GetRect().y + b.GetRect().h > rect.y - rect.h &&
 		b.GetRect().x < rect.x + rect.h * 2 && b.GetRect().x + b.GetRect().w > rect.x + rect.h)
 	{	
+		if (b.GetRect().x < rect.x + rect.h + rect.h / 4 || b.GetRect().x > rect.x + 2 * rect.h - rect.h / 4)
+		{
 			Vec2 ballSpeedDirection = b.GetSpeedDirection();
 			ballSpeedDirection.x *= -1;
 			b.SetSpeedDirection(ballSpeedDirection);
+		}
+
+		if (b.GetRect().y < rect.y - rect.h * 0.75f || b.GetRect().y > rect.y + rect.h + rect.h * 0.75f)
+		{
+			Vec2 ballSpeedDirection = b.GetSpeedDirection();
+			ballSpeedDirection.y *= -1;
+			b.SetSpeedDirection(ballSpeedDirection);
+		}
 	}
 }
 
@@ -91,6 +102,11 @@ int Player::GetLives()
 	return lives;
 }
 
+int Player::GetScore()
+{
+	return score;
+}
+
 void Player::SetLives(const int &l)
 {
 	lives = l;
@@ -99,6 +115,11 @@ void Player::SetLives(const int &l)
 void Player::SetSpeed(const int &s)
 {
 	speed = s;
+}
+
+void Player::SetScore(const int &s)
+{
+	score = s;
 }
 
 

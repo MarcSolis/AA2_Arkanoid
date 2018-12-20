@@ -17,7 +17,7 @@ private:
 
 	Vec2 position;
 	Vec2 speedDirection;
-	SDL_Rect rect;
+	Rect rect;
 
 public:
 	//Constructor
@@ -34,12 +34,12 @@ public:
 	int GetRadius();
 	bool GetFirstPlayerHasBall();
 	bool GetScored();
-	SDL_Rect GetRect();
+	Rect GetRect();
 	Vec2 GetSpeedDirection();
 	void SetScored(const bool&);
 	void SetInitPosition(const Vec2&);
 	void SetSpeedDirection(const Vec2&);
-	void SetRect(const SDL_Rect&);
+	void SetRect(const Rect&);
 	//Destructor
 	~Ball();
 };

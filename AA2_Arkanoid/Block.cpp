@@ -58,6 +58,8 @@ void Block::FixedUpdate()
 
 void Block::Render()
 {
+	//Renderer::Instance()->PushImage(texture.id, {position.x, position.y, position.w, position.h});
+	Renderer::Instance()->PushRotatedImage(texture.id, { position.x, position.y, position.w, position.h }, 90);
 	//Renderer::Instance()->PushRotatedSprite(texture.id, snippet, position, 90, Vec2{ position.w / 2, position.h });
 }
 

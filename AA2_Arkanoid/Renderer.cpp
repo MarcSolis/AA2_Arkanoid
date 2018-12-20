@@ -47,7 +47,7 @@ Renderer::Renderer()
 	};
 
 	void Renderer::LoadTextureText(const std::string &fontId, Text text) {
-		SDL_Surface	*tmpSurf = TTF_RenderText_Blended(m_fontData[fontId], text.text.c_str(), SDL_Color{ text.color.r, text.color.g, text.color.b,text.color.a });
+		SDL_Surface	*tmpSurf = TTF_RenderText_Blended(m_fontData[fontId], text.text.c_str(), SDL_Color{ (uint8_t)text.color.r, (uint8_t)text.color.g, (uint8_t)text.color.b,(uint8_t)text.color.a });
 		if (tmpSurf == nullptr) throw "Unable to create the SDL text surface";
 		SDL_Texture *texture{ SDL_CreateTextureFromSurface(m_renderer, tmpSurf) };
 		m_textureData[text.id] = texture;

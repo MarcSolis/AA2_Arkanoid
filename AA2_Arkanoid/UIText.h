@@ -7,17 +7,18 @@ class UIText
 {
 private:
 	//Atributes
-	SDL_Rect rect;
+	Rect rect;
 	std::string textID;
 	
 	bool toRender;
 public:
 	//Constructor
 	UIText();
-	UIText(const Vec2&, const std::string&, const std::string&, const SDL_Color& = WHITE); ///Posició, Text, FontID, Color
+	UIText(const Vec2&, const std::string&, const std::string&, const Color& = WHITE);
 	//Functions
 	void Render();
 	static void Destroy(UIText&);
+	void ChangeTexture(const Vec2&, const std::string&, const std::string&, const Color& = WHITE);
 	void SetToRender(const bool&);
 	//Destructor
 	~UIText();

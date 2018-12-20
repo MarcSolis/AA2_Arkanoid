@@ -15,14 +15,14 @@ Ball::Ball(const int& r, const int& minS, const int& maxS, const std::string& pa
 
 	position = Vec2{ SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 	speedDirection = Vec2{ 0,0 };
-	rect = SDL_Rect{position.x, position.y, 2*radius, 2*radius};
+	rect = Rect{position.x, position.y, 2*radius, 2*radius};
 }
 
 void Ball::Update()
 {
 	position = Vec2{position.x + speedDirection.x, position.y + speedDirection.y};
 
-	rect = SDL_Rect{ position.x, position.y, rect.w, rect.h};
+	rect = Rect{ position.x, position.y, rect.w, rect.h};
 	
 	StayOnField();
 	CheckGoal();
@@ -44,7 +44,7 @@ void Ball::CheckGoal()
 
 void Ball::Render()
 {
-	Renderer::Instance()->PushImage(ballID, rect);
+	Renderer::Instance()->PushImage(ballID, { rect.x, rect.y, rect.w, rect.h });
 }
 
 void Ball::ApplyInitVelocity()
@@ -93,7 +93,7 @@ bool Ball::GetScored()
 	return scored;
 }
 
-SDL_Rect Ball::GetRect()
+Rect Ball::GetRect()
 {
 	return rect;
 }
@@ -112,7 +112,7 @@ void Ball::SetInitPosition(const Vec2& pos)
 {
 	position = pos;
 	position = Vec2{ position.x, position.y - radius };
-	rect = SDL_Rect{ position.x, position.y, rect.w, rect.h };
+	rect = Rect{ position.x, position.y, rect.w, rect.h };
 }
 
 void Ball::SetSpeedDirection(const Vec2& speedDir)
@@ -120,7 +120,7 @@ void Ball::SetSpeedDirection(const Vec2& speedDir)
 	speedDirection = speedDir;
 }
 
-void Ball::SetRect(const SDL_Rect &r)
+void Ball::SetRect(const Rect &r)
 {
 	rect = r;
 }

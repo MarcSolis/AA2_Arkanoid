@@ -9,7 +9,7 @@ class Button
 {
 private:
 	//Atributtes
-	SDL_Rect rect;
+	Rect rect;
 	std::string normalID, hoverID, normalID2, hoverID2;
 
 	bool isHover;
@@ -18,8 +18,8 @@ private:
 
 public:
 	//Constructor
-	Button(const Vec2&, const std::string&, const std::string&, const SDL_Color& = WHITE, const SDL_Color& = LIGHTBLUE); //Constructor per botó de un sol estat
-	Button(const Vec2&, const std::string&, const std::string&, const std::string&, const SDL_Color& = WHITE, const SDL_Color& = LIGHTBLUE); //Constructor per botó de dos estats
+	Button(const Vec2&, const std::string&, const std::string&, const Color& = WHITE, const Color& = LIGHTBLUE); //Constructor per botó de un sol estat
+	Button(const Vec2&, const std::string&, const std::string&, const std::string&, const Color& = WHITE, const Color& = LIGHTBLUE); //Constructor per botó de dos estats
 	Button();
 	//Functions
 	void Render();

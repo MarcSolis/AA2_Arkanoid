@@ -37,8 +37,16 @@ const Color RED{ 255, 0, 0, 255 };
 const Color GREEN{ 0, 255, 0, 255 };
 const Color TRANSPARENT{ 0, 0, 0, 0 };
 
-const SDL_Color WHITE{ 255, 255, 255, 255 };
+/*const SDL_Color WHITE{ 255, 255, 255, 255 };
 const SDL_Color LIGHTBLUE{ 100, 100, 255, 255 };
+const SDL_Color UIRED{ 255,0,0,255 };
 const SDL_Color GOLD{ 255,215,0,255 };
 const SDL_Color SILVER{ 192,192,192,255 };
-const SDL_Color BRONZE{ 205, 127, 50,255 };
+const SDL_Color BRONZE{ 205, 127, 50,255 };*/
+
+const Color WHITE{ 255, 255, 255, 255 };
+const Color LIGHTBLUE{ 100, 100, 255, 255 };
+const Color UIRED{ 255,0,0,255 };
+const Color GOLD{ 255,215,0,255 };
+const Color SILVER{ 192,192,192,255 };
+const Color BRONZE{ 205, 127, 50,255 };
