@@ -38,6 +38,7 @@ public:
 	Vec2 GetTextureSize(const std::string &id);
 	void PushImage(const std::string &id, const SDL_Rect &rect);
 	void PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos);
+	void PushRotatedImage(const std::string &id, const SDL_Rect &rect, float angle);
 	void PushRotatedSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos, float angle);
 	void SetRenderDrawColor(int r, int g, int b);
 	void DeleteTexture(const std::string &);

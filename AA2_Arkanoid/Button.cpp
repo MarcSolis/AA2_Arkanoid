@@ -67,6 +67,11 @@ void Button::Destroy(Button &button)
 	Renderer::Instance()->DeleteTexture(button.hoverID2);
 }
 
+bool Button::GetActivated()
+{
+	return activated;
+}
+
 //Destructor
 Button::~Button() {
 	Destroy(*this);

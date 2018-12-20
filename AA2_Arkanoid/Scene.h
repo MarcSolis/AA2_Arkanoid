@@ -12,7 +12,7 @@ protected:
 	int counter = 0, initClock = 0, playtime = 0;
 
 	SDL_Rect bgRect{ 0,0,SCREEN_WIDTH, SCREEN_HEIGHT };
-
+	Mix_Music* music;
 public:
 	SceneType nextScene{ CURRENT };
 //Constructor

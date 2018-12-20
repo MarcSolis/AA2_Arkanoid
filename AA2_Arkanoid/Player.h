@@ -24,9 +24,11 @@ public:
 	Player(const int&, const int&, const std::string&);
 
 	//Functions
-	void Update(const InputManager &);
-	//void DetectBallCollision(Ball &);
+	void Update(const InputManager &, Ball &);
+	void DetectBallCollision(Ball &);
 	void Render();
+	void StayOnField();
+
 	Vec2 ReturnInitBallPosition();
 	//Destructor
 	~Player();

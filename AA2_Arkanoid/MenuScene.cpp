@@ -7,6 +7,10 @@ MenuScene::MenuScene() :
 	soundButton(soundButtPos, "Sound ON", "Sound OFF", "XS_sunspire")
 {
 	Renderer::Instance()->LoadTexture("MenuBackground", "../res/Menu.jpg");
+
+	music = Mix_LoadMUS("../res/music.mp3");
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 10);
+	Mix_PlayMusic(music, -1);
 }
 
 void MenuScene::Update(const InputManager &input)
@@ -22,10 +26,17 @@ void MenuScene::Update(const InputManager &input)
 		quitButton.OnClick(false, [&]() {nextScene = EXIT; });
 
 		if (playtime >= timeToClickAgain)
-			soundButton.OnClick(true, [&]() {timeToClickAgain = playtime + 10000; });
+			soundButton.OnClick(true, [&]() {
+			timeToClickAgain = playtime + 10000; 
+			if (!soundButton.GetActivated())
+				Mix_PauseMusic();
+			else
+				Mix_ResumeMusic();
+		});
 	}
 	else
 		timeToClickAgain = playtime;
+
 }
 
 void MenuScene::FixedUpdate()
@@ -49,4 +60,5 @@ MenuScene::~MenuScene()
 	rankingButton.Destroy(rankingButton);
 	quitButton.Destroy(quitButton);
 	soundButton.Destroy(soundButton);
+	music = nullptr;
 }

@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "InputManager.h"
 #include "Renderer.h"
+#include "Common.h"
 
 class Controller
 {
@@ -17,7 +18,6 @@ public:
 //Functions
 	void GameLoop();
 	void EndGame();
-
 //Destructor
 	~Controller();
 };

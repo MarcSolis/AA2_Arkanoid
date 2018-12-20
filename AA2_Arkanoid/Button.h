@@ -26,6 +26,8 @@ public:
 	void IsHover(const Vec2&);
 	void OnClick(const bool&, const std::function<void()>&); ///El bool sirve para determinar si el botón tiene un solo estado o dos 
 	static void Destroy(Button&);
+
+	bool GetActivated();
 	//Destructor
 	~Button();
 };

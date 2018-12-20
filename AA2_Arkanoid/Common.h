@@ -2,11 +2,12 @@
 #include <SDL.h>
 #include <time.h>
 #include <iostream>
+#include <SDL_mixer.h>
 
 // Game general information.
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
-#define FIELD_TOP 30
+#define FIELD_TOP 26
 #define FIELD_BOTTOM 470
 #define FIELD_LEFT 30
 #define FIELD_RIGHT 570
@@ -21,6 +22,7 @@
 const int FPS = 60;
 const float DELAY_TIME = 1000.0f / FPS;
 
+const Uint8 mixFlags{ MIX_INIT_MP3 | MIX_INIT_OGG };
 
 enum SceneType { SPLASHSCREEN, MENU, GAME, RANKING, CURRENT, EXIT };
 

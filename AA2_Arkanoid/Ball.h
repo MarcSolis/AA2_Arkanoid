@@ -2,14 +2,13 @@
 #include "Common.h"
 #include "Vec2.h"
 #include "Renderer.h"
-#include "Player.h"
 
 class Ball
 {
 private:
 	//Atributtes
 	int radius;
-	int speed;
+	int minSpeed, maxSpeed;
 
 	bool firstPlayerHasBall = true;
 	bool scored = false;
@@ -23,7 +22,7 @@ private:
 public:
 	//Constructor
 	Ball();
-	Ball(const int&, const int&, const std::string&);
+	Ball(const int&, const int&, const int&, const std::string&);
 
 	//Functions
 	void Update();
@@ -35,8 +34,12 @@ public:
 	int GetRadius();
 	bool GetFirstPlayerHasBall();
 	bool GetScored();
+	SDL_Rect GetRect();
+	Vec2 GetSpeedDirection();
 	void SetScored(const bool&);
 	void SetInitPosition(const Vec2&);
+	void SetSpeedDirection(const Vec2&);
+	void SetRect(const SDL_Rect&);
 	//Destructor
 	~Ball();
 };

@@ -10,7 +10,7 @@ Controller::Controller()
 	Renderer::Instance()->LoadFont({ "sunspire", "../res/sunspire.ttf", 50 });
 	Renderer::Instance()->LoadFont({ "S_sunspire", "../res/sunspire.ttf", 30 });
 	Renderer::Instance()->LoadFont({ "XS_sunspire", "../res/sunspire.ttf", 20 });
-	scene = new MenuScene;
+	scene = new SplashScene;
 	isRunning = true;
 }
 
@@ -62,6 +62,8 @@ void Controller::EndGame()
 
 
 
+
 Controller::~Controller()
 {
+	Mix_Quit();
 }

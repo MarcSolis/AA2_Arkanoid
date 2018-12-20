@@ -3,7 +3,7 @@
 
 GameScene::GameScene() :
 	players({Player(1, 1, "../res/platform.png"), Player(2,1,"../res/platform.png")}),
-	ball(10, 2, "../res/ball.png"),
+	ball(10, 3, 6, "../res/ball.png"),
 	startGame(startGamePos, "Start Game", "B_sunspire", { 255,255,255,255 }),
 	spaceBarToStart(spaceBarToStartPos, "Space Bar To Start", "S_sunspire", { 255,255,255,255 }),
 	pause(pausePos, "...Pause...", "B_sunspire", { 255,255,255,255 }),
@@ -16,6 +16,10 @@ GameScene::GameScene() :
 	timeToPressAgain = 0;
 	nextState = START_GAME;
 	Renderer::Instance()->LoadTexture("GameBackground", "../res/Backgroung.jpg");
+
+	music = Mix_LoadMUS("../res/music.mp3");
+	Mix_VolumeMusic(MIX_MAX_VOLUME / 10);
+	Mix_PlayMusic(music, -1);
 }
 
 void GameScene::Update(const InputManager &input)
@@ -46,8 +50,8 @@ void GameScene::Update(const InputManager &input)
 			spaceBarToStart.Render();
 			break;
 		case RUNNING:
-			players[0].Update(input);
-			players[1].Update(input);
+			players[0].Update(input, ball);
+			players[1].Update(input, ball);
 
 			ball.Update();
 
@@ -71,7 +75,13 @@ void GameScene::Update(const InputManager &input)
 				nextState = RUNNING;
 
 			if (input.mouseClicked && playtime >= timeToPressAgain)
-				soundButton.OnClick(true, [&]() {timeToPressAgain = playtime + 10000; });
+				soundButton.OnClick(true, [&]() {
+				timeToPressAgain = playtime + 10000;
+				if (!soundButton.GetActivated())
+					Mix_PauseMusic();
+				else
+					Mix_ResumeMusic();
+			});
 
 			if (!input.esc && !input.mouseClicked)
 				timeToPressAgain = 0;

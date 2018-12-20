@@ -6,7 +6,7 @@ Ball::Ball()
 {
 }
 
-Ball::Ball(const int& r, const int& s, const std::string& path) : radius(r), speed(s)
+Ball::Ball(const int& r, const int& minS, const int& maxS, const std::string& path) : radius(r), minSpeed(minS), maxSpeed(maxS)
 {
 	ballID = "Ball";
 	Renderer::Instance()->LoadTexture(ballID, path);
@@ -51,16 +51,19 @@ void Ball::Render()
 
 void Ball::ApplyInitVelocity()
 {
-	if (position.x < SCREEN_WIDTH / 2)
-		speedDirection.x = speed;
-	else
-		speedDirection.x = -speed;
+	int speedX = rand() % (maxSpeed - minSpeed + 1) + minSpeed;
+	int speedY = rand() % (maxSpeed - minSpeed + 1) + minSpeed;
 
+	if (position.x < SCREEN_WIDTH / 2)
+		speedDirection.x = speedX;
+	else
+		speedDirection.x = -speedX;
+	
 	int random = rand() % 2;
 	if (random == 0)
-		speedDirection.y = speed;
+		speedDirection.y = speedY;
 	else
-		speedDirection.y = -speed;
+		speedDirection.y = -speedY;
 }
 
 void Ball::StayOnField()
@@ -92,6 +95,16 @@ bool Ball::GetScored()
 	return scored;
 }
 
+SDL_Rect Ball::GetRect()
+{
+	return rect;
+}
+
+Vec2 Ball::GetSpeedDirection()
+{
+	return speedDirection;
+}
+
 void Ball::SetScored(const bool &s)
 {
 	scored = s;
@@ -102,6 +115,16 @@ void Ball::SetInitPosition(const Vec2& pos)
 	position = pos;
 	position = Vec2{ position.x, position.y - radius };
 	rect = SDL_Rect{ position.x, position.y, rect.w, rect.h };
+}
+
+void Ball::SetSpeedDirection(const Vec2& speedDir)
+{
+	speedDirection = speedDir;
+}
+
+void Ball::SetRect(const SDL_Rect &r)
+{
+	rect = r;
 }
 
 Ball::~Ball()

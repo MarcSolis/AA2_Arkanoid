@@ -24,7 +24,6 @@ Renderer::Renderer()
 
 	// ---- TTF ----
 	if (TTF_Init() != 0) throw "No es pot inicialitzar SDL_ttf";
-
 };
 
 //Functions
@@ -68,6 +67,11 @@ Renderer::Renderer()
 
 	void Renderer::PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos) {
 		SDL_RenderCopy(m_renderer, m_textureData[id], &rectSprite, &rectPos);
+	}
+
+	void Renderer::PushRotatedImage(const std::string &id, const SDL_Rect &rect, float angle) {
+		SDL_Point center = { rect.w / 2, rect.h / 2 };
+		SDL_RenderCopyEx(m_renderer, m_textureData[id], nullptr, &rect, angle, &center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::PushRotatedSprite(const std::string & id, const SDL_Rect & rectSprite, const SDL_Rect & rectPos, float angle) {

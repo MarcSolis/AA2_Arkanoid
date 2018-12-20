@@ -19,6 +19,8 @@ void Scene::Run(const InputManager &input)
 	frame++;
 
 	Render();
+
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 1024);
 }
 
 SceneType Scene::Transition() {	return nextScene; }
