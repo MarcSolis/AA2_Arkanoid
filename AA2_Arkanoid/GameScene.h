@@ -17,6 +17,7 @@ private:
 	enum GameStates {START_GAME, RUNNING, PAUSED, GAME_OVER};
 	GameStates nextState{ START_GAME };
 	int timeToPressAgain;
+	bool firstPlayerHasBall;
 	std::string winnerName;
 
 	std::vector<Player> players;

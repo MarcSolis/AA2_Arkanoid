@@ -35,7 +35,6 @@ void Controller::GameLoop()
 		case SceneType::GAME:
 			scene->~Scene();
 			scene = new GameScene;
-			std::cout << "Created new GAME Scene" << std::endl;
 			break;
 		case SceneType::RANKING:
 			scene->~Scene();

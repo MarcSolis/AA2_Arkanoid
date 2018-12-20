@@ -25,9 +25,9 @@ public:
 
 	//Functions
 	void Update(const InputManager &);
-	void DetectBallCollision(Ball &);
+	//void DetectBallCollision(Ball &);
 	void Render();
-
+	Vec2 ReturnInitBallPosition();
 	//Destructor
 	~Player();
 };

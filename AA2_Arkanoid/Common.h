@@ -7,7 +7,7 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 #define FIELD_TOP 30
-#define FIELD_BOTTOM 500
+#define FIELD_BOTTOM 470
 #define FIELD_LEFT 30
 #define FIELD_RIGHT 570
 #define MATCH_TIME 60

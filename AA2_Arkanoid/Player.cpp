@@ -20,7 +20,6 @@ Player::Player(const int &playerTag, const int &playerSpeed, const std::string &
 
 	dimensions = Vec2{60, 10};
 	rect = SDL_Rect{ position.x, position.y, dimensions.x, dimensions.y };
-	std::cout << "CREATED PLAYER" << std::endl;
 }
 
 
@@ -80,13 +79,25 @@ void Player::Update(const InputManager &input)
 	}
 }
 
-void Player::DetectBallCollision(Ball &)
-{
-}
+//void Player::DetectBallCollision(Ball &)
+//{
+//}
 
 void Player::Render()
 {
-	Renderer::Instance()->PushRotatedSprite(playerID, rect);
+	Renderer::Instance()->PushImage(playerID, rect);
+	//Renderer::Instance()->PushRotatedSprite(playerID, rect);
+}
+
+Vec2 Player::ReturnInitBallPosition()
+{
+	Vec2 pos;
+	if (tag == 1)
+		pos = Vec2{position.x + dimensions.x, position.y + dimensions.y / 2};
+	else if(tag == 2)
+		pos = Vec2{ position.x , position.y + dimensions.y / 2 };
+
+	return pos;
 }
 
 

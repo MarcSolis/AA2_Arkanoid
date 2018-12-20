@@ -2,6 +2,7 @@
 #include "Common.h"
 #include "Vec2.h"
 #include "Renderer.h"
+#include "Player.h"
 
 class Ball
 {
@@ -9,6 +10,9 @@ private:
 	//Atributtes
 	int radius;
 	int speed;
+
+	bool firstPlayerHasBall = true;
+	bool scored = false;
 
 	std::string ballID;
 
@@ -23,9 +27,16 @@ public:
 
 	//Functions
 	void Update();
-	void GoalKick(const int&);
+	void GoalKick();
 	void Render();
+	void ApplyInitVelocity();
+	void StayOnField();
 
+	int GetRadius();
+	bool GetFirstPlayerHasBall();
+	bool GetScored();
+	void SetScored(const bool&);
+	void SetInitPosition(const Vec2&);
 	//Destructor
 	~Ball();
 };

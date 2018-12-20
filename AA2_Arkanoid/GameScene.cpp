@@ -28,22 +28,38 @@ void GameScene::Update(const InputManager &input)
 	switch (nextState)
 	{
 		case START_GAME:
+			ball.SetScored(false);
+
+			if (ball.GetFirstPlayerHasBall())
+				ball.SetInitPosition(players[0].ReturnInitBallPosition());
+			else
+				ball.SetInitPosition(players[1].ReturnInitBallPosition());
+
 			if (input.esc)
 				nextScene = MENU;
 			if (input.space)
+			{
+				ball.ApplyInitVelocity();
 				nextState = RUNNING;
+			}
 			startGame.Render();
 			spaceBarToStart.Render();
 			break;
 		case RUNNING:
 			players[0].Update(input);
+			players[1].Update(input);
+
 			ball.Update();
+
 
 			if (input.p || input.esc)
 			{
 				nextState = PAUSED;
 				timeToPressAgain = playtime + 10000;
 			}
+
+			if (ball.GetScored())
+				nextState = START_GAME;
 			break;
 		case PAUSED:
 			soundButton.IsHover(input.mousePos);
@@ -73,6 +89,7 @@ void GameScene::Update(const InputManager &input)
 			break;
 	}
 	players[0].Render();
+	players[1].Render();
 }
 
 void GameScene::FixedUpdate()
