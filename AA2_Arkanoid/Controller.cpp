@@ -25,19 +25,19 @@ void Controller::GameLoop()
 		//Logic
 		switch (scene->Transition()) {
 		case SceneType::SPLASHSCREEN:
-			scene->~Scene();
+			delete scene;
 			scene = new SplashScene;
 			break;
 		case SceneType::MENU:
-			scene->~Scene();
+			delete scene;
 			scene = new MenuScene;
 			break;
 		case SceneType::GAME:
-			scene->~Scene();
+			delete scene;
 			scene = new GameScene;
 			break;
 		case SceneType::RANKING:
-			scene->~Scene();
+			delete scene;
 			scene = new RankingScene;
 			break;
 		case SceneType::EXIT:

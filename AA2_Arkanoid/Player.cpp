@@ -7,12 +7,13 @@ Player::Player()
 
 }
 
-Player::Player(const int &playerTag, const int &playerSpeed, const std::string &path) : tag(playerTag)
+Player::Player(const int &playerTag, const int &playerSpeed , const std::string &path) : tag(playerTag)
 {
 	playerID = "Player" + playerTag;
 	Renderer::Instance()->LoadTexture(playerID, path);
 
-	speed = 10;
+	speed = playerSpeed;
+	lives = 3;
 
 	if (tag == 1)
 		position = Vec2{int(SCREEN_WIDTH * 0.1f), SCREEN_HEIGHT / 2};
@@ -27,7 +28,6 @@ void Player::Update(const InputManager &input, Ball &b)
 {
 	if (tag == 1)
 	{
-		//std::cout << input.mousePos.x << std::endl;
 		if (input.w)
 			position.y -= speed;
 		else if (input.s)
@@ -79,6 +79,26 @@ Vec2 Player::ReturnInitBallPosition()
 		pos = Vec2{ position.x , position.y + dimensions.y / 2 };
 
 	return pos;
+}
+
+int Player::GetTag()
+{
+	return tag;
+}
+
+int Player::GetLives()
+{
+	return lives;
+}
+
+void Player::SetLives(const int &l)
+{
+	lives = l;
+}
+
+void Player::SetSpeed(const int &s)
+{
+	speed = s;
 }
 
 

@@ -10,6 +10,7 @@ private:
 	//Atributes
 	int tag;
 	int speed;
+	int lives;
 
 	std::string playerID;
 
@@ -30,6 +31,10 @@ public:
 	void StayOnField();
 
 	Vec2 ReturnInitBallPosition();
+	int GetTag();
+	int GetLives();
+	void SetLives(const int&);
+	void SetSpeed(const int&);
 	//Destructor
 	~Player();
 };

@@ -27,6 +27,9 @@ const Uint8 mixFlags{ MIX_INIT_MP3 | MIX_INIT_OGG };
 enum SceneType { SPLASHSCREEN, MENU, GAME, RANKING, CURRENT, EXIT };
 
 enum Type { FIX, HEAVY, NORMAL, NONE };
+const int DefaultGridPosX = (SCREEN_WIDTH / 2) - (DEFAULT_BLOCK_WIDTH * 6);
+const int DefaultGridPosY = FIELD_TOP + 8;
+
 struct Color { int r, g, b, a; };
 
 const Color BROWN{ 85, 42, 0, 255 };

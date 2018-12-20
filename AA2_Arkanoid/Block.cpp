@@ -1,54 +1,52 @@
 #include "Block.h"
 #include "Renderer.h"
 
-Block::Block(const Vec2 &_pos, const Type _type)
+Block::Block()
 {
-	Renderer::Instance()->LoadTexture("block", "../res/bricks.jpg");
-	rect.x = _pos.x;
-	rect.y = _pos.y;
-	type = _type;
+}
+
+Block::Block(const Vec2 &_pos, const Type _type, const int& nMin, const int& nMax, const int& hMin, const int& hMax) :
+	normalMin(nMin), normalMax(nMax), heavyMin(hMin), heavyMax(hMax)
+{
+	if (_type != NONE) {
+		Renderer::Instance()->LoadTexture(texture.id, texture.path);
+		Vec2 size = Renderer::Instance()->GetTextureSize("block");
+		textWidth = size.x;
+		textHeight = size.y;
+		frameWidth = textWidth / 5;
+		frameHeight = textHeight / 3;
+		snippet.x = 0;
+		snippet.h = frameHeight;
+		snippet.w = frameWidth;
+		type = _type;
+		position.x = _pos.x;
+		position.y = _pos.y;
+	}
 
 	switch (type) {
 	case NORMAL:
-		health = 1;
+		life = 1;
 		color = GREEN;
-		min = NormalMin;
-		max = NormalMax;
+		snippet.y = 0;
+		points = rand() % (normalMax - normalMin + 1) + normalMin;
 		break;
 	case HEAVY:
-		health = 3;
+		life = 3;
 		color = RED;
-		min = HeavyMin;
-		max = HeavyMax;
+		snippet.y = frameHeight;
+		rand() % (heavyMax - heavyMin + 1) + heavyMin;
 		break;
 	case FIX:
-		health = -1;
+		life = -1;
 		color = BROWN;
+		snippet.y = frameHeight * 2;
 	case NONE:
 		color = TRANSPARENT;
+		//destroy
 		break;
 	}
-
-	points = rand() % (max + 1 - min) + min;
 }
 
-void Block::Run()
-{
-	frameStart = SDL_GetTicks();
-	playtime = counter + (clock() - initClock) / CLOCKS_PER_SEC;
-
-	Update();
-	FixedUpdate();
-
-	frameTime = SDL_GetTicks() - frameStart;
-	if (frameTime < DELAY_TIME) {
-		frameTime = 0;
-		SDL_Delay((int)(DELAY_TIME - frameTime));
-	}
-	frame++;
-
-	Render();
-}
 
 void Block::Update()
 {
@@ -60,6 +58,7 @@ void Block::FixedUpdate()
 
 void Block::Render()
 {
+	//Renderer::Instance()->PushRotatedSprite(texture.id, snippet, position, 90, Vec2{ position.w / 2, position.h });
 }
 
 

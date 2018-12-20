@@ -10,6 +10,7 @@ private:
 	SDL_Rect rect;
 	std::string textID;
 	
+	bool toRender;
 public:
 	//Constructor
 	UIText();
@@ -17,6 +18,7 @@ public:
 	//Functions
 	void Render();
 	static void Destroy(UIText&);
+	void SetToRender(const bool&);
 	//Destructor
 	~UIText();
 };

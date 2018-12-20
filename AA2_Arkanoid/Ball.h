@@ -26,7 +26,7 @@ public:
 
 	//Functions
 	void Update();
-	void GoalKick();
+	void CheckGoal();
 	void Render();
 	void ApplyInitVelocity();
 	void StayOnField();

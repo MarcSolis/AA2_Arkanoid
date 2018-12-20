@@ -2,17 +2,53 @@
 
 
 GameScene::GameScene() :
-	players({Player(1, 1, "../res/platform.png"), Player(2,1,"../res/platform.png")}),
+	players({Player(1, 10, "../res/platform.png"), Player(2,10,"../res/platform.png")}),
 	ball(10, 3, 6, "../res/ball.png"),
 	startGame(startGamePos, "Start Game", "B_sunspire", { 255,255,255,255 }),
 	spaceBarToStart(spaceBarToStartPos, "Space Bar To Start", "S_sunspire", { 255,255,255,255 }),
 	pause(pausePos, "...Pause...", "B_sunspire", { 255,255,255,255 }),
 	pl1(pl1Pos, "PL1:", "sunspire", { 255,0,0,255 }),
-	//pl1Score(pl1ScorePos, player1.score.toString(), "sunspire", { 255,0,0,255 }),
 	pl2(pl2Pos, "PL2:", "sunspire", { 255,0,0,255 }),
-	//pl2Score(pl2ScorePos, player2.score.toString(), "sunspire", { 255,0,0,255 }),
 	soundButton(soundButtPos, "Sound ON", "Sound OFF", "S_sunspire")
 {
+	//UploadData();
+	GenerateBlocks(3, 5, HEAVY);
+	GenerateBlocks(0, 0, FIX);
+	GenerateBlocks(11, 10, NORMAL);
+	GenerateBlocks(1, 0, HEAVY);
+	GenerateBlocks(2, 0, HEAVY);
+	GenerateBlocks(3, 0, HEAVY);
+	GenerateBlocks(4, 0, HEAVY);
+	GenerateBlocks(5, 0, HEAVY);
+	GenerateBlocks(6, 0, HEAVY);
+	GenerateBlocks(7, 0, HEAVY);
+	GenerateBlocks(8, 0, HEAVY);
+	GenerateBlocks(9, 0, HEAVY);
+	GenerateBlocks(10, 0, HEAVY);
+	GenerateBlocks(11, 0, HEAVY);
+	GenerateBlocks(0, 1, HEAVY);
+	GenerateBlocks(0, 2, HEAVY);
+	GenerateBlocks(0, 3, HEAVY);
+	GenerateBlocks(0, 4, HEAVY);
+	GenerateBlocks(0, 5, HEAVY);
+	GenerateBlocks(0, 6, HEAVY);
+	GenerateBlocks(0, 7, HEAVY);
+	GenerateBlocks(0, 8, HEAVY);
+	GenerateBlocks(0, 9, HEAVY);
+	GenerateBlocks(0, 10, HEAVY);
+
+	Renderer::Instance()->LoadTexture(livesHUD.id, livesHUD.path);
+	int offset = 5;
+	for (int i = 0; i < 6; i++) {
+		if (i < 3) {
+			livesPosPl1.push_back({ pl1Pos.x + offset, pl1Pos.y + 48, livesSize.x, livesSize.y });
+		}
+		else livesPosPl2.push_back({ pl2Pos.x + offset, pl2Pos.y + 48, livesSize.x, livesSize.y });
+		offset += livesSize.x + 30;
+		if (i == 2) offset = 5;
+
+	}
+
 	timeToPressAgain = 0;
 	nextState = START_GAME;
 	Renderer::Instance()->LoadTexture("GameBackground", "../res/Backgroung.jpg");
@@ -32,13 +68,6 @@ void GameScene::Update(const InputManager &input)
 	switch (nextState)
 	{
 		case START_GAME:
-			ball.SetScored(false);
-
-			if (ball.GetFirstPlayerHasBall())
-				ball.SetInitPosition(players[0].ReturnInitBallPosition());
-			else
-				ball.SetInitPosition(players[1].ReturnInitBallPosition());
-
 			if (input.esc)
 				nextScene = MENU;
 			if (input.space)
@@ -46,24 +75,37 @@ void GameScene::Update(const InputManager &input)
 				ball.ApplyInitVelocity();
 				nextState = RUNNING;
 			}
+
+			ball.SetScored(false);
+			if (ball.GetFirstPlayerHasBall())
+				ball.SetInitPosition(players[0].ReturnInitBallPosition());
+			else
+				ball.SetInitPosition(players[1].ReturnInitBallPosition());
+
 			startGame.Render();
 			spaceBarToStart.Render();
 			break;
 		case RUNNING:
-			players[0].Update(input, ball);
-			players[1].Update(input, ball);
-
-			ball.Update();
-
-
 			if (input.p || input.esc)
 			{
 				nextState = PAUSED;
 				timeToPressAgain = playtime + 10000;
 			}
 
+			players[0].Update(input, ball);
+			players[1].Update(input, ball);
+
+			ball.Update();
+
 			if (ball.GetScored())
+			{
 				nextState = START_GAME;
+				if (ball.GetFirstPlayerHasBall())
+					UpdatePlayerLives(players[0]);
+				else
+					UpdatePlayerLives(players[1]);
+			}
+
 			break;
 		case PAUSED:
 			soundButton.IsHover(input.mousePos);
@@ -100,6 +142,11 @@ void GameScene::Update(const InputManager &input)
 	}
 	players[0].Render();
 	players[1].Render();
+
+	for (int i = 0; i < livesPosPl1.size(); i++)
+		Renderer::Instance()->PushImage("Life", livesPosPl1[i]);
+	for (int i = 0; i < livesPosPl2.size(); i++)
+		Renderer::Instance()->PushImage("Life", livesPosPl2[i]);
 }
 
 void GameScene::FixedUpdate()
@@ -111,6 +158,45 @@ void GameScene::Render()
 	Renderer::Instance()->Render();
 }
 
+void GameScene::UploadData()
+{
+	rapidxml::xml_document<> doc;
+	std::ifstream file(".. / res / files / config.xml");
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	file.close();
+	std::string content(buffer.str());
+	doc.parse<0>(&content[0]);
+
+	rapidxml::xml_node<> *pRoot = doc.first_node();
+	rapidxml::xml_node<> *pNode = pRoot->first_node("BrickInfo");
+	//NormalMin = std::stoi(*pNode->first_node("Normal")->first_attribute("min")->value);
+	//NormalMax = std::stoi(*pNode->first_node("Normal")->first_attribute("max")->value);
+	//HeavyMin = std::stoi(*pNode->first_node("Heavy")->first_attribute("min")->value);
+	//HeavyMax = std::stoi(*pNode->first_node("Heavy")->first_attribute("max")->value);
+}
+
+void GameScene::GenerateBlocks(const int& i, const int& j, const Type& t) {
+	Vec2 pos = { DefaultGridPosX + cell.x*i, DefaultGridPosY + cell.y*j };
+	blocks.push_back({ pos, t, NormalMin, NormalMax, HeavyMin, HeavyMax});
+}
+
+void GameScene::UpdatePlayerLives(Player &p)
+{
+	int lives = p.GetLives();
+	lives--;
+	p.SetLives(lives);
+
+	if (p.GetLives() < 0)
+		nextState = GAME_OVER;
+	else
+	{
+		if(p.GetTag() == 1)
+			livesPosPl1.pop_back();
+		else if(p.GetTag() == 2)
+			livesPosPl2.pop_back();
+	}
+}
 
 GameScene::~GameScene()
 {

@@ -25,6 +25,11 @@ void UIText::Destroy(UIText &uiText)
 	Renderer::Instance()->DeleteTexture(uiText.textID);
 }
 
+void UIText::SetToRender(const bool &r)
+{
+	toRender = r;
+}
+
 
 UIText::~UIText()
 {

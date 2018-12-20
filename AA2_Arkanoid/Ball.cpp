@@ -25,20 +25,18 @@ void Ball::Update()
 	rect = SDL_Rect{ position.x, position.y, rect.w, rect.h};
 	
 	StayOnField();
-	GoalKick();
+	CheckGoal();
 }
 
-void Ball::GoalKick()
+void Ball::CheckGoal()
 {
 	if (position.x <= FIELD_LEFT)
 	{
-		std::cout << "Player 2 scored" << std::endl;
 		firstPlayerHasBall = true;
 		scored = true;
 	}
 	else if (position.x >= SCREEN_WIDTH - FIELD_LEFT - radius * 2)
 	{
-		std::cout << "Player 1 scored" << std::endl;
 		firstPlayerHasBall = false;
 		scored = true;
 	}

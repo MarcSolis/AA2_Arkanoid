@@ -7,6 +7,7 @@
 #include "Text.h"
 #include "Font.h"
 #include <unordered_map>
+#include "Rect.h"
 
 class Renderer	//Implemented with SDL
 {
@@ -40,6 +41,7 @@ public:
 	void PushSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos);
 	void PushRotatedImage(const std::string &id, const SDL_Rect &rect, float angle);
 	void PushRotatedSprite(const std::string &id, const SDL_Rect &rectSprite, const SDL_Rect &rectPos, float angle);
+	void PushRotatedSprite(const std::string & id, const Rect & rectSprite, const Rect & rectPos, float angle, Vec2 _center);
 	void SetRenderDrawColor(int r, int g, int b);
 	void DeleteTexture(const std::string &);
 
